@@ -8,9 +8,9 @@ from pathlib import Path
 
 import numpy as np
 
-from nm_exp4_full_universe import RANDOM_SEED, to_jsonable
-from nm_exp_p5_external_validation import compute_overlap
-from nm_exp_p11_noncanonical_enrichment import (
+from full_universe import RANDOM_SEED, to_jsonable
+from external_validation import compute_overlap
+from noncanonical_enrichment import (
     build_canonical_summary,
     load_set1_hits,
     train_full_fold_c_model,

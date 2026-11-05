@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import rev_exp_common as rc
+import common as rc
 
 SCRIPT_NAME = Path(__file__).name
 RESULTS_DIR = rc.BASE_DIR / "results"
@@ -245,7 +245,7 @@ def validate_model_row(model_entry: dict, where: str, e12_module) -> dict:
 
 
 def validate_e12_reference(payload: dict, e12_module) -> dict:
-    if payload.get("script_name") != "rev_exp_e12_strict_windows.py":
+    if payload.get("script_name") != "strict_windows.py":
         raise RuntimeError(f"Unexpected E12 reference provenance: {payload.get('script_name')}")
     params = payload.get("parameters", {})
     if params.get("strict_specs") != e12_module.STRICT_SPECS:
@@ -297,7 +297,7 @@ def validate_e12_reference(payload: dict, e12_module) -> dict:
 
 
 def validate_e19_reference(payload: dict, e12_module) -> dict:
-    if payload.get("script_name") != "rev_exp_e19_no_prior_ablation.py":
+    if payload.get("script_name") != "no_prior_ablation.py":
         raise RuntimeError(f"Unexpected E19 reference provenance: {payload.get('script_name')}")
     params = payload.get("parameters", {})
     if params.get("same_nested_cv_as_e12") is not True:
@@ -647,8 +647,8 @@ def main() -> None:
     start = time.time()
     print(f"[{rc.utc_timestamp()}] E21 deployed block ablation starting", flush=True)
 
-    import rev_exp_e9_nested_tuning as e9
-    import rev_exp_e12_strict_windows as e12
+    import nested_tuning as e9
+    import strict_windows as e12
 
     feature_block_audit = validate_feature_blocks()
     configuration_specs = build_configuration_specs()
@@ -712,10 +712,10 @@ def main() -> None:
             "table_sort_policy": "full_model pinned first; remaining rows sorted by mean delta vs full across xgb/logistic ascending",
         },
         input_paths=[
-            "rev_exp_common.py",
-            "rev_exp_e9_nested_tuning.py",
-            "rev_exp_e12_strict_windows.py",
-            "rev_exp_e19_no_prior_ablation.py",
+            "common.py",
+            "nested_tuning.py",
+            "strict_windows.py",
+            "no_prior_ablation.py",
             "results/rev_exp_e12_strict_windows.json",
             "results/rev_exp_e19_no_prior_ablation.json",
             "paper/supplementary_table_s1.tex",

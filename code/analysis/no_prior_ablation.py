@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import rev_exp_common as rc
+import common as rc
 
 SCRIPT_NAME = Path(__file__).name
 RESULTS_DIR = rc.BASE_DIR / "results"
@@ -39,7 +39,7 @@ def load_cached_annotation_bundle() -> tuple[dict, set[str], Path]:
         raise FileNotFoundError(f"Missing cached annotation bundle: {ANNOTATION_BUNDLE_PATH}")
     payload = json.loads(ANNOTATION_BUNDLE_PATH.read_text())
     provenance = payload.get("provenance", {})
-    if provenance.get("script_name") != "rev_exp_annotations.py":
+    if provenance.get("script_name") != "annotations.py":
         raise RuntimeError(f"Unexpected annotation provenance in {ANNOTATION_BUNDLE_PATH}: {provenance}")
     bundle = payload.get("annotation_bundle")
     if not isinstance(bundle, dict):
@@ -49,8 +49,8 @@ def load_cached_annotation_bundle() -> tuple[dict, set[str], Path]:
 
 
 def apply_no_prior_feature_patch():
-    import rev_exp_e9_nested_tuning as e9
-    import rev_exp_e12_strict_windows as e12
+    import nested_tuning as e9
+    import strict_windows as e12
 
     if len(NO_PRIOR_FEATURES) != EXPECTED_TEMPORAL_FEATURE_COUNT:
         raise RuntimeError(
@@ -293,10 +293,10 @@ def main() -> None:
             "ablation_question": "how much of the deployed model's performance survives when the static prior is dropped entirely",
         },
         input_paths=[
-            "rev_exp_common.py",
-            "rev_exp_e9_nested_tuning.py",
-            "rev_exp_e12_strict_windows.py",
-            "rev_exp_e18_uniprot_prior_probe.py",
+            "common.py",
+            "nested_tuning.py",
+            "strict_windows.py",
+            "uniprot_prior_probe.py",
             "results/rev_exp_e12_strict_windows.json",
             "results/rev_exp_annotations.json",
             "paper/supplementary_table_s1.tex",

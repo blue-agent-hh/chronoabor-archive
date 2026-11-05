@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from rev_exp_common import (
+from common import (
     BASE_DIR,
     FEATURE_LAYER_ORDER,
     FULL_FEATURES,
@@ -29,7 +29,7 @@ from rev_exp_common import (
 )
 
 SCRIPT_NAME = Path(__file__).name
-OUTPUT_JSON = RESULTS_DIR / f"{Path(__file__).stem}.json"
+OUTPUT_JSON = RESULTS_DIR / "rev_exp_e2_corpus_saturation.json"
 FRACTIONS = [0.2, 0.4, 0.6, 0.8, 1.0]
 N_REPLICATES = 20
 
@@ -195,8 +195,8 @@ def main() -> None:
                 "feature_columns_used": FULL_FEATURES,
             },
             input_paths=[
-                BASE_DIR / "nm_exp4_full_universe.py",
-                BASE_DIR / "nm_exp_p6_secreted_ablation.py",
+                BASE_DIR / "full_universe.py",
+                BASE_DIR / "secreted_ablation.py",
                 BASE_DIR / "paper" / "supplementary_table_s1.tex",
             ],
         ),

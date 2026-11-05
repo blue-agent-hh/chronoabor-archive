@@ -14,7 +14,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib as _mpl
 
-from nm_exp4_full_universe import (
+from full_universe import (
     FEATURE_COLUMNS,
     RANDOM_SEED,
     build_features_and_evidence,
@@ -24,8 +24,8 @@ from nm_exp4_full_universe import (
     make_xgb,
     to_jsonable,
 )
-from nm_exp_p1_prior_control import SECRETED_GENES
-from nm_exp_p5_external_validation import IADRC_UP_RAW, KNIGHT_UP_RAW, canonicalize_gene_list
+from prior_control import SECRETED_GENES
+from external_validation import IADRC_UP_RAW, KNIGHT_UP_RAW, canonicalize_gene_list
 
 _mpl.rcParams["svg.fonttype"] = "none"
 _mpl.rcParams["pdf.fonttype"] = 42
@@ -122,7 +122,7 @@ def load_p5_hit_source() -> dict:
 
     canonical_genes = canonicalize_gene_list(IADRC_UP_RAW + KNIGHT_UP_RAW)
     return {
-        "source": "embedded_fallback_from_nm_exp_p5_external_validation.py",
+        "source": "embedded_fallback_from_external_validation.py",
         "source_mode": "embedded_constants",
         "raw_count": len(IADRC_UP_RAW) + len(KNIGHT_UP_RAW),
         "canonical_unique_count": len(canonical_genes),

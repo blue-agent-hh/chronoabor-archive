@@ -10,7 +10,7 @@ from scipy.stats import hypergeom
 from sklearn.metrics import average_precision_score, roc_auc_score
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from rev_exp_common import (
+from common import (
     BASE_DIR,
     FULL_FEATURES,
     build_feature_context,
@@ -18,8 +18,8 @@ from rev_exp_common import (
     provenance,
     utc_timestamp,
 )
-from rev_exp_annotations import build_annotation_bundle
-from rev_exp_e9_nested_tuning import (
+from annotations import build_annotation_bundle
+from nested_tuning import (
     LOGISTIC_GRID,
     XGB_GRID,
     N_INNER,
@@ -117,7 +117,7 @@ def main() -> None:
     t0 = time.time()
     print(f"[{utc_timestamp()}] E12 strict windows starting", flush=True)
     payload = provenance(
-        "rev_exp_e12_strict_windows.py",
+        "strict_windows.py",
         parameters={
             "strict_specs": STRICT_SPECS,
             "within_secreted_spec": WITHIN_SECRETED_SPEC,
@@ -125,7 +125,7 @@ def main() -> None:
             "n_outer": N_OUTER, "n_inner": N_INNER, "outer_seeds": OUTER_SEEDS, "inner_seed": INNER_SEED,
             "xgb_grid": XGB_GRID, "logistic_grid": LOGISTIC_GRID,
         },
-        input_paths=["rev_exp_common.py", "rev_exp_e9_nested_tuning.py", "paper/supplementary_table_s1.tex"],
+        input_paths=["common.py", "nested_tuning.py", "paper/supplementary_table_s1.tex"],
     )
     payload["benchmarks"] = {}
 

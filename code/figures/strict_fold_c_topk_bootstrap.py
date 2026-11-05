@@ -9,8 +9,8 @@ import numpy as np
 PROJECT = Path(__file__).resolve().parents[1] / "analysis"
 sys.path.insert(0, str(PROJECT))
 
-from rev_exp_e12_strict_windows import STRICT_SPECS, build_eval, full_fit_ranking, rank_metrics
-from rev_exp_e7_external_benchmark import bootstrap_topk_precision_intervals
+from strict_windows import STRICT_SPECS, build_eval, full_fit_ranking, rank_metrics
+from external_benchmark import bootstrap_topk_precision_intervals
 
 KS = [5, 10, 20, 50]
 N_BOOT = 1000

@@ -11,8 +11,8 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import rev_exp_common as rc
-import rev_exp_e12_strict_windows as e12
+import common as rc
+import strict_windows as e12
 
 SCRIPT_NAME = Path(__file__).name
 RESULTS_DIR = rc.BASE_DIR / "results"
@@ -41,7 +41,7 @@ TIE_BREAK_POLICY = (
 
 
 def load_cached_uniprot_kw_genes() -> tuple[dict, set[str], Path]:
-    import rev_exp_annotations as annotations
+    import annotations as annotations
 
     bundle_path = annotations.OUTPUT_JSON
     if not bundle_path.exists():
@@ -51,7 +51,7 @@ def load_cached_uniprot_kw_genes() -> tuple[dict, set[str], Path]:
         )
     payload = json.loads(bundle_path.read_text())
     provenance = payload.get("provenance", {})
-    if provenance.get("script_name") != "rev_exp_annotations.py":
+    if provenance.get("script_name") != "annotations.py":
         raise RuntimeError(f"Unexpected annotation provenance in {bundle_path}: {provenance}")
     bundle = payload.get("annotation_bundle")
     if not isinstance(bundle, dict):
@@ -282,9 +282,9 @@ def main() -> None:
             "inner_seed": e12.INNER_SEED,
         },
         input_paths=[
-            "rev_exp_common.py",
-            "rev_exp_e12_strict_windows.py",
-            "rev_exp_e9_nested_tuning.py",
+            "common.py",
+            "strict_windows.py",
+            "nested_tuning.py",
             "results/rev_exp_annotations.json",
             "paper/supplementary_table_s1.tex",
         ],

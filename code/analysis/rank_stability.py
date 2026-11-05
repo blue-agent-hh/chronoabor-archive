@@ -15,8 +15,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib as _mpl
 
-from nm_exp4_full_universe import RANDOM_SEED, make_xgb, to_jsonable
-from nm_exp_p6_secreted_ablation import (
+from full_universe import RANDOM_SEED, make_xgb, to_jsonable
+from secreted_ablation import (
     FEATURE_CUTOFF_YEAR,
     METHOD_SPECS,
     build_fold_c_frame,

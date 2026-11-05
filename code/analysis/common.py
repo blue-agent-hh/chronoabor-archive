@@ -21,7 +21,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from xgboost import DMatrix, XGBClassifier
 
-from nm_exp4_full_universe import (
+from full_universe import (
     FEATURE_COLUMNS,
     LAYER_FILES,
     RANDOM_SEED,
@@ -37,11 +37,11 @@ from nm_exp4_full_universe import (
     resolve_year,
     to_jsonable,
 )
-from nm_exp5_llm_vs_ml_benchmark import make_logistic_regression as make_elastic_net_pipeline
-from nm_exp_p10_second_validation import build_scored_universe
-from nm_exp_p1_prior_control import SECRETED_GENES
-from nm_exp_p6_secreted_ablation import build_fold_c_frame as build_within_secreted_fold_c_frame
-from nm_exp_p5_external_validation import normalize_external_gene_symbol
+from llm_vs_ml_benchmark import make_logistic_regression as make_elastic_net_pipeline
+from second_validation import build_scored_universe
+from prior_control import SECRETED_GENES
+from secreted_ablation import build_fold_c_frame as build_within_secreted_fold_c_frame
+from external_validation import normalize_external_gene_symbol
 
 BASE_DIR = Path(__file__).resolve().parent
 RESULTS_DIR = BASE_DIR / "results"

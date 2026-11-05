@@ -6,9 +6,9 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import rev_exp_e8_spec_model as e8
-from rev_exp_common import BASE_DIR, build_gene_universe, load_all_tables, provenance
-from rev_exp_annotations import build_annotation_bundle
+import spec_model as e8
+from common import BASE_DIR, build_gene_universe, load_all_tables, provenance
+from annotations import build_annotation_bundle
 
 OUT = BASE_DIR / "results" / "rev_exp_e13_strict_spec_ablation.json"
 CUTOFF = 2020
@@ -53,9 +53,9 @@ def main() -> None:
     shap_res = e8.evaluate_shap(fold_df, e8.LEARNING_RATES)
 
     payload = provenance(
-        "rev_exp_e13_strict_spec_ablation.py",
+        "strict_spec_ablation.py",
         parameters={"cutoff_year": CUTOFF, "label_window": [LABEL_START, LABEL_END], "rule": "first-report year strictly after cutoff", "learning_rates": e8.LEARNING_RATES, "n_splits": e8.N_SPLITS},
-        input_paths=["rev_exp_e8_spec_model.py", "nm_corpus_v2.csv"],
+        input_paths=["spec_model.py", "nm_corpus_v2.csv"],
     )
     payload.update(
         {

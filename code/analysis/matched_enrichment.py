@@ -15,9 +15,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib as _mpl
 
-from nm_exp4_full_universe import RANDOM_SEED, to_jsonable
-from nm_exp_p6_secreted_ablation import summarize_distribution
-from nm_exp_p7_ranked_enrichment import (
+from full_universe import RANDOM_SEED, to_jsonable
+from secreted_ablation import summarize_distribution
+from ranked_enrichment import (
     FEATURE_CUTOFF_YEAR,
     WEIGHT_EXPONENT,
     build_fold_c_frame,

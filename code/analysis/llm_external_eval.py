@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 import os
 os.chdir(Path(__file__).parent)
 
-from rev_exp_common import build_external_fold_dataset
+from common import build_external_fold_dataset
 
 RESULTS = Path("results")
 

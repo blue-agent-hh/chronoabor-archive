@@ -15,7 +15,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib as _mpl
 
-from nm_exp4_full_universe import (
+from full_universe import (
     FEATURE_COLUMNS,
     RANDOM_SEED,
     build_features_and_evidence,
@@ -24,8 +24,8 @@ from nm_exp4_full_universe import (
     load_tables,
     to_jsonable,
 )
-from nm_exp_p1_prior_control import PRIOR_FEATURES, SECRETED_GENES
-from nm_exp_p6_secreted_ablation import (
+from prior_control import PRIOR_FEATURES, SECRETED_GENES
+from secreted_ablation import (
     compute_cv_scores,
     stratified_bootstrap_auc,
     stratified_bootstrap_auc_delta,

@@ -8,9 +8,9 @@ from pathlib import Path
 
 import numpy as np
 
-from nm_exp4_full_universe import RANDOM_SEED, to_jsonable
-from nm_exp_p6_secreted_ablation import summarize_distribution
-from nm_exp_p7b_matched_enrichment import (
+from full_universe import RANDOM_SEED, to_jsonable
+from secreted_ablation import summarize_distribution
+from matched_enrichment import (
     MATCHED_PERMUTATIONS,
     build_feasible_match_pools,
     build_scored_universe,
@@ -18,7 +18,7 @@ from nm_exp_p7b_matched_enrichment import (
     compute_matched_null,
     compute_nes_and_pvalue,
 )
-from nm_exp_p11_noncanonical_enrichment import HARDCODED_CANONICAL_GENES
+from noncanonical_enrichment import HARDCODED_CANONICAL_GENES
 
 BASE_DIR = Path(__file__).resolve().parent
 RESULTS_DIR = BASE_DIR / "results"
