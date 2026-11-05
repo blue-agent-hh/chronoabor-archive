@@ -22,7 +22,7 @@ LOG_FILE = RESULTS_DIR / "nm_exp_gemini_31pro_core.log"
 OUTPUT_JSON = RESULTS_DIR / "nm_exp_gemini_31pro_core.json"
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
-MODEL_NAME = "gemini-3.1-pro-preview"
+MODEL_NAME = "gemini-3.1-pro"
 PROXIES = None
 TIMEOUT = (10, 180)
 MAX_RETRIES = 3
